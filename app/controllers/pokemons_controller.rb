@@ -1,6 +1,9 @@
 class PokemonsController < ApplicationController
   def index
-    if params[:type].present?
+    if params[:search].present?
+      search_term = "#{params[:search].downcase}%"
+      @pokemons = Pokemon.where('LOWER(species) LIKE ?', search_term)
+    elsif params[:type].present?
       @type = Type.find_by(name: params[:type])
       @pokemons = @type.pokemons
     else
@@ -13,3 +16,4 @@ class PokemonsController < ApplicationController
     @pokemon = Pokemon.find(params[:id])
   end
 end
+
