@@ -1,7 +1,11 @@
-# app/controllers/pokemons_controller.rb
 class PokemonsController < ApplicationController
   def index
-    @pokemons = Pokemon.all
+    if params[:type].present?
+      @type = Type.find_by(name: params[:type])
+      @pokemons = @type.pokemons
+    else
+      @pokemons = Pokemon.all
+    end
     @types = Type.all
   end
 

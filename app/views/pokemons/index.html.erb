@@ -22,7 +22,7 @@
       <h2>Categories</h2>
       <ul class="list-group">
         <% @types.each do |type| %>
-          <li class="list-group-item"><%= link_to type.name, type_path(type) %></li>
+          <li class="list-group-item"><%= link_to type.name,type_pokemons_path(type: type.name) %></li>
         <% end %>
       </ul>
     </div>
