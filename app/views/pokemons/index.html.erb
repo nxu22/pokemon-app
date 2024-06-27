@@ -1,28 +1,12 @@
 <h1 class="text-center my-4">Pokémon--Hub</h1>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-  <div class="container-fluid">
-    <%= link_to 'Home', root_path, class: 'navbar-brand' %>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to 'Home', root_path, class: 'nav-link active' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'About', about_path, class: 'nav-link' %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <div class="container">
   <div class="row">
     <div class="col-md-3">
       <h2>Categories</h2>
       <ul class="list-group">
         <% @types.each do |type| %>
-          <li class="list-group-item"><%= link_to type.name,type_pokemons_path(type: type.name) %></li>
+          <li class="list-group-item"><%= link_to type.name, type_pokemons_path(type: type.name) %></li>
         <% end %>
       </ul>
     </div>
@@ -32,9 +16,9 @@
         <% @pokemons.each do |pokemon| %>
           <div class="col-md-4 mb-4">
             <div class="card">
-              <%= image_tag pokemon.sprite, class: 'card-img-top' %>
+              <%= link_to image_tag(pokemon.sprite, class: 'card-img-top'), pokemon_path(pokemon) %>
               <div class="card-body">
-                <h5 class="card-title"><%= pokemon.species %></h5>
+                <h5 class="card-title"><%= link_to pokemon.species, pokemon_path(pokemon) %></h5>
               </div>
             </div>
           </div>
