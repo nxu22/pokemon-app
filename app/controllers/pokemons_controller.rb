@@ -9,6 +9,12 @@ class PokemonsController < ApplicationController
     else
       @pokemons = Pokemon.all
     end
+
+    if params[:sort].present?
+      sort_order = params[:sort] == 'asc' ? 'ASC' : 'DESC'
+      @pokemons = @pokemons.order("species COLLATE NOCASE #{sort_order}")
+    end
+
     @types = Type.all
   end
 

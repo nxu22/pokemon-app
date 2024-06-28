@@ -11,18 +11,35 @@
   </div>
 </div>
 
+<div class="container mb-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with url: root_path, method: :get, local: true, class: 'd-flex' do |form| %>
+        <%= form.label :sort, 'Sort by:', class: 'me-2' %>
+        <%= form.select :sort, [['Ascending', 'asc'], ['Descending', 'desc']], { include_blank: true }, class: 'form-select me-2' %>
+        <%= form.submit 'Sort', class: 'btn btn-outline-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <h2>Categories</h2>
+      <h2>Types</h2>
       <ul class="list-group">
         <% @types.each do |type| %>
-          <li class="list-group-item"><%= link_to type.name, type_pokemons_path(type: type.name) %></li>
+          <li class="list-group-item <%= 'active' if @type && @type.name == type.name %>">
+            <%= link_to type.name, type_pokemons_path(type: type.name) %>
+          </li>
         <% end %>
       </ul>
     </div>
     <div class="col-md-9">
       <h2>Pokémon List</h2>
+      <% if @type %>
+        <h3>Type: <%= @type.name %></h3>
+      <% end %>
       <div class="row">
         <% @pokemons.each do |pokemon| %>
           <div class="col-md-4 mb-4">
