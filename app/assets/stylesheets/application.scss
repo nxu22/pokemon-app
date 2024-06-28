@@ -1,2 +1,11 @@
-// app/assets/stylesheets/application.scss
 @import "bootstrap";
+
+.list-group-item.active {
+  background-color: hsl(203, 65%, 79%);
+  border-color: #a7c3dc;
+  color: white;
+}
+
+.list-group-item.active a {
+  color: white;
+}
