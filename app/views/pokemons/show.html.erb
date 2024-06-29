@@ -1,37 +1,43 @@
-<h1 class="text-center my-4"><%= @pokemon.species %> Details</h1>
+<!-- app/views/pokemons/show.html.erb -->
+<% if @pokemon %>
+  <h1 class="text-center my-4"><%= @pokemon.species %> Details</h1>
 
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <h2>Categories</h2>
-      <ul class="list-group">
-        <% @pokemon.types.each do |type| %>
-          <li class="list-group-item"><%= type.name %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div class="col-md-9">
-      <h2 class="text-center my-4"><%= @pokemon.species %> Details</h2>
-      <div class="card mb-4">
-        <div class="card-img-top text-center">
-          <%= image_tag @pokemon.sprite, class: 'img-fluid', style: 'max-width: 100%; height: auto; width: auto; max-height: 400px;' %>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title text-center"><%= @pokemon.species %></h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Height:</strong> <%= @pokemon.height %> m</li>
-            <li class="list-group-item"><strong>Weight:</strong> <%= @pokemon.weight %> kg</li>
-            <li class="list-group-item"><strong>Ability:</strong> <%= @pokemon.abilities %></li>
-            <li class="list-group-item"><strong>Types:</strong>
-              <% @pokemon.types.each do |type| %>
-                <%= type.name %><br>
-              <% end %>
-            </li>
-          </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>Categories</h2>
+        <ul class="list-group">
+          <% @pokemon.types.each do |type| %>
+            <li class="list-group-item"><%= type.name %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <h2 class="text-center my-4"><%= @pokemon.species %> Details</h2>
+        <div class="card mb-4">
+          <div class="card-img-top text-center">
+            <%= image_tag @pokemon.sprite, class: 'img-fluid', style: 'max-width: 100%; height: auto; width: auto; max-height: 400px;' %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center"><%= @pokemon.species %></h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Height:</strong> <%= @pokemon.height %> m</li>
+              <li class="list-group-item"><strong>Weight:</strong> <%= @pokemon.weight %> kg</li>
+              <li class="list-group-item"><strong>Ability:</strong> <%= @pokemon.abilities %></li>
+              <li class="list-group-item"><strong>Types:</strong>
+                <% @pokemon.types.each do |type| %>
+                  <%= type.name %><br>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <h1 class="text-center my-4">Pokémon Details</h1>
+    <p>This page shows the Pokémon details when you click on a Pokémon from the Pokémon list.</p>
+  </div>
+<% end %>
