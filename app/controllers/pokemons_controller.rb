@@ -1,13 +1,17 @@
 class PokemonsController < ApplicationController
   def index
-    if params[:search].present?
-      search_term = "#{params[:search].downcase}%"
-      @pokemons = Pokemon.where('LOWER(species) LIKE ?', search_term)
-    elsif params[:type].present?
+    @types = Type.all
+
+    if params[:type].present? && params[:type] != 'All'
       @type = Type.find_by(name: params[:type])
       @pokemons = @type.pokemons
     else
       @pokemons = Pokemon.all
+    end
+
+    if params[:search].present?
+      search_term = "#{params[:search].downcase}%"
+      @pokemons = @pokemons.where('LOWER(species) LIKE ?', search_term)
     end
 
     if params[:sort].present?
@@ -15,11 +19,11 @@ class PokemonsController < ApplicationController
       @pokemons = @pokemons.order("species COLLATE NOCASE #{sort_order}")
     end
 
-    @types = Type.all
+    # Add pagination
+    @pokemons = @pokemons.page(params[:page]).per(9)
   end
 
   def show
     @pokemon = Pokemon.find(params[:id])
   end
 end
-

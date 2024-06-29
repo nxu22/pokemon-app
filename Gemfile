@@ -10,6 +10,9 @@ gem 'sassc-rails', '>= 2.1.0'
 
 gem 'mini_racer', platforms: :ruby
 
+# Gemfile
+gem 'kaminari'
+
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
