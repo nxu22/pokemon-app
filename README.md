@@ -9,7 +9,7 @@ Database ERD
 File Structure
 
 The file structure of this project is organized as follows:
-app
+
 
 ![alt text](image-4.png)
 
